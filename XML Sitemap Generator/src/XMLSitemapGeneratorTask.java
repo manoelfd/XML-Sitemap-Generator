@@ -23,22 +23,18 @@ public class XMLSitemapGeneratorTask extends SwingWorker<Integer[], String> {
 
   public XMLSitemapGeneratorTask(String source, String destination, String website, String numSitemaps, int numURLsPerSitemap, String firstNumber, String priority, String changeFrequency, Date date)
       throws IllegalArgumentException {
-    if (!new File(source).isDirectory()) {
-      System.out.println("ERROR: Bad source");
+    if (!new File(source).isDirectory()) 
       throw new IllegalArgumentException("Invalid source path!");
-    }
-    if (!new File(destination).isDirectory()) {
-      System.out.println("ERROR: Bad destination");
+    
+    if (!new File(destination).isDirectory()) 
       throw new IllegalArgumentException("Invalid destination path!");
-    }
-    if (!website.matches("http://www.[\\w-]*[.][\\w-]+")) {
-      System.out.println("ERROR: Bad website");
+    
+    if (!website.matches("http://www.[\\w-]*[.][\\w-]+")) 
       throw new IllegalArgumentException("Websites must be of the form http://www.name.com");
-    }
-    if (date == null) {
-      System.out.println("Bad date!");
+    
+    if (date == null) 
       throw new IllegalArgumentException("Date must be of the form yyyy-mm-dd!");
-    }
+
     switch (firstNumber) {
       case "1":
         this.numLeadingZeros = 1;

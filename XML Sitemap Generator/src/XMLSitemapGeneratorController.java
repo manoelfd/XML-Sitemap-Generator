@@ -101,7 +101,6 @@ public class XMLSitemapGeneratorController {
               String propertyName = evt.getPropertyName();
               if ("state".equals(propertyName)) {
                 if (evt.getNewValue() == SwingWorker.StateValue.DONE) {
-                  System.out.println("Done!");
                   try {
                     Integer[] results = task.get();
                     view.setProgressBarValue(100);
@@ -111,7 +110,6 @@ public class XMLSitemapGeneratorController {
                   } catch (InterruptedException | ExecutionException e) {
                     e.printStackTrace();
                   } catch (CancellationException e2) {
-                    System.out.println("Caught the exception in cancel");
                     view.setProgressBarIndeterminateMode(false);
                     view.setProgressBarValue(0);
                     view.toggleControlButtons();
