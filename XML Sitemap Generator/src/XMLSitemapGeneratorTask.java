@@ -23,16 +23,13 @@ public class XMLSitemapGeneratorTask extends SwingWorker<Integer[], String> {
 
   public XMLSitemapGeneratorTask(String source, String destination, String website, String numSitemaps, int numURLsPerSitemap, String firstNumber, String priority, String changeFrequency, Date date)
       throws IllegalArgumentException {
-    if (!new File(source).isDirectory()) 
+    if (!new File(source).isDirectory())
       throw new IllegalArgumentException("Invalid source path!");
-    
-    if (!new File(destination).isDirectory()) 
+    if (!new File(destination).isDirectory())
       throw new IllegalArgumentException("Invalid destination path!");
-    
-    if (!website.matches("http://www.[\\w-]*[.][\\w-]+")) 
+    if (!website.matches("http://www.[\\w-]*[.][\\w-]+"))
       throw new IllegalArgumentException("Websites must be of the form http://www.name.com");
-    
-    if (date == null) 
+    if (date == null)
       throw new IllegalArgumentException("Date must be of the form yyyy-mm-dd!");
 
     switch (firstNumber) {
@@ -124,9 +121,7 @@ public class XMLSitemapGeneratorTask extends SwingWorker<Integer[], String> {
             out.close();
             out = new FileWriter(new File(destinationFolder + "/sitemap" + String.format("%0" + numLeadingZeros + "d", siteMaps) + ".xml"));
             writeHeader(out);
-
           }
-
         }
         out.write("<url><loc>" + website + "/" + htmlFile + "</loc><lastmod>" + dateString + "</lastmod><changefreq>" + changeFrequency + "</changefreq><priority>" + priority + "</priority></url>");
         out.write(newLine);
@@ -136,16 +131,10 @@ public class XMLSitemapGeneratorTask extends SwingWorker<Integer[], String> {
       writeTrailer(out);
       out.flush();
       out.close();
-
-      htmlFileNames.clear();
-
-
-
     } catch (IOException e) {
       e.printStackTrace();
     }
-
-
+    htmlFileNames.clear();
     return new Integer[] {totalFiles, siteMaps};
   }
 
@@ -158,8 +147,8 @@ public class XMLSitemapGeneratorTask extends SwingWorker<Integer[], String> {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-
   }
+
   private void writeTrailer(FileWriter out) {
     try {
       out.write(newLine);
@@ -168,6 +157,5 @@ public class XMLSitemapGeneratorTask extends SwingWorker<Integer[], String> {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-
   }
 }
