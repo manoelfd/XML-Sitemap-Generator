@@ -17,9 +17,9 @@ public class XMLSitemapGeneratorTask extends SwingWorker<Integer[], String> {
   private int numURLsPerSitemap;
   private int numLeadingZeros;
   private Date date;
-  private String newLine = "\r\n";
-  private static int PERCENT_OF_FINDING_FILES = 90;
-  private static int PERCENT_OF_WRITING_FILES = 10;
+  private static final String NEW_LINE = "\r\n";
+  private static final int PERCENT_OF_FINDING_FILES = 90;
+  private static final int PERCENT_OF_WRITING_FILES = 10;
 
   public XMLSitemapGeneratorTask(String source, String destination, String website, String numSitemaps, int numURLsPerSitemap, String firstNumber, String priority, String changeFrequency, Date date)
       throws IllegalArgumentException {
@@ -124,7 +124,7 @@ public class XMLSitemapGeneratorTask extends SwingWorker<Integer[], String> {
           }
         }
         out.write("<url><loc>" + website + "/" + htmlFile + "</loc><lastmod>" + dateString + "</lastmod><changefreq>" + changeFrequency + "</changefreq><priority>" + priority + "</priority></url>");
-        out.write(newLine);
+        out.write(NEW_LINE);
         processed++;
         setProgress(Math.min(PERCENT_OF_FINDING_FILES + PERCENT_OF_WRITING_FILES, PERCENT_OF_FINDING_FILES + (int) ((((double) processed) / totalFiles) * PERCENT_OF_WRITING_FILES)));
       }
@@ -142,7 +142,7 @@ public class XMLSitemapGeneratorTask extends SwingWorker<Integer[], String> {
     try {
       out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
       out.write("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\r\n");
-      out.write(newLine);
+      out.write(NEW_LINE);
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -151,7 +151,7 @@ public class XMLSitemapGeneratorTask extends SwingWorker<Integer[], String> {
 
   private void writeTrailer(FileWriter out) {
     try {
-      out.write(newLine);
+      out.write(NEW_LINE);
       out.write("</urlset>");
     } catch (IOException e) {
       // TODO Auto-generated catch block
